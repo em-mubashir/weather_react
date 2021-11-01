@@ -2,11 +2,12 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
 import { WeatherData, WeatherError } from '../types';
 import {WeatherAction, GET_WEATHER, SET_LOADING, SET_ERROR} from "../types/actions"
+import weatherService from "../../services/weatherService"
 
 export const getWeather = (city: string): ThunkAction<void, RootState, null, WeatherAction> => {
   return async dispatch => {
     try {
-      const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER__KEY}`);
+      const res = await weatherService.getWeather(city);
       if(!res.ok) {
         const resData: WeatherError = await res.json();
         throw new Error(resData.message);
