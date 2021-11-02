@@ -1,7 +1,7 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '..';
-import { WeatherData, WeatherError } from '../types';
-import {WeatherAction, GET_WEATHER, SET_LOADING, SET_ERROR} from "../types/actions"
+import { WeatherData, WeatherError,ForcastData } from '../types';
+import {WeatherAction, GET_WEATHER, SET_LOADING, SET_ERROR,GET_FORCAST} from "../types/actions"
 import weatherService from "../../services/weatherService"
 
 export const getWeather = (type:string,city: string): ThunkAction<void, RootState, null, WeatherAction> => {
@@ -29,18 +29,18 @@ export const getWeather = (type:string,city: string): ThunkAction<void, RootStat
 }
 
 
-export const getForcast = (type:string,city: string): ThunkAction<void, RootState, null, WeatherAction> => {
+export const getForcast = (lat:number,lan: number): ThunkAction<void, RootState, null, WeatherAction> => {
   return async dispatch => {
     try {
-      const res = await weatherService.getForcast(type,city);
+      const res = await weatherService.getHourlyForcast(lat,lan);
       if(!res) {
         const resData: WeatherError = await res.json();
         throw new Error(resData.message);
       }
 
-      const resData: WeatherData =  res;
+      const resData: ForcastData =  res;
       dispatch({
-        type: GET_WEATHER,
+        type: GET_FORCAST,
         payload: resData
       });
     }catch(err) {

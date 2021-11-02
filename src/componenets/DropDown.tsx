@@ -12,9 +12,8 @@ setSearchBy (e.target.value)
 	}
 
 	return (
-<div className="dropdown">
-	{title}
-	<select onChange={selectOption} id="cars" name="cars">
+<div className="dropdown ">
+	<select className="btn btn-primary dropdown-toggle" onChange={selectOption} id="cars" name="cars">
     <option value="name">By Name</option>
     <option value="zip">By Zip</option>
 

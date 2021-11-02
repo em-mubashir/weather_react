@@ -8,8 +8,8 @@ const weatherService = {
             .then(res =>res.data)
             .catch(err => err);
     },
-    getForcast:(type:string,city: string) =>{
-        return axios.get(`https://api.openweathermap.org/data/2.5/forecast/daily?${type}=${city}&units=metric&cnt=7&appid=${process.env.REACT_APP_WEATHER__KEY}`)
+    getHourlyForcast:(lat:number,lon: number) =>{
+        return axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${process.env.REACT_APP_WEATHER__KEY}`)
         .then(res => res.data)
         .catch(err => err);
     }

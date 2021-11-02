@@ -1,15 +1,11 @@
 import React,{ FC ,useState, FormEvent } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { getWeather, setLoading } from '../store/actions/Weather';
 import weatherService from "../services/weatherService"
 import DropDown from "./DropDown"
 
 
-
-interface ISearchProps{
-	title: string
-}
-const Search :FC<ISearchProps> =({title})=>{
+const Search :FC =()=>{
 	const dispatch = useDispatch();
 	const [city, setCity] = useState('');
 	const [searchBy, setSearchBy] = useState('q');
@@ -26,7 +22,6 @@ const Search :FC<ISearchProps> =({title})=>{
 	  }
   else{
 	  dispatch(setLoading());
-	  weatherService.getForcast(searchBy,city).then((res:any)=>console.log("res",res))
 	  dispatch(getWeather(searchBy,city));
 	  setCity('');
 	}
@@ -43,7 +38,7 @@ const Search :FC<ISearchProps> =({title})=>{
 	return (
 <form onSubmit={submitHandler}>
   <div className="row">
-    <div className="col-md-5">
+    <div className="col-md-5 col-sm">
       <input	type="text"
 				className="form-control"
 				placeholder="Enter city name"
@@ -51,8 +46,8 @@ const Search :FC<ISearchProps> =({title})=>{
 				onChange={changeHandler}/>
     </div>
 
-	<div className="col-md-4"> 		<DropDown setSearchBy={setDropdown} title={""}/></div>
-    <div className="col-md-3">
+	<div className="col-md-4 col-sm mt-1" > 		<DropDown setSearchBy={setDropdown} title={""}/></div>
+    <div className="col-md-3 col-sm mt-1"  >
 	<button className="btn btn-primary mb-2" >Search</button>
     </div>
   </div>

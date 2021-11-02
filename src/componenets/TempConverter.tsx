@@ -1,8 +1,5 @@
-import React,{ FC, useState,FormEvent,useEffect  } from "react";
+import React,{ FC, useState,FormEvent  } from "react";
 import {WeatherData } from "../store/types"
-
-
-
 interface IWeatherProps{
 	data: WeatherData
 }
@@ -20,8 +17,6 @@ const TempConverter :FC<IWeatherProps> =({data})=>{
 	setFahrenheit(+e.currentTarget.value* 9/5 + 32);
 
   }
-
- 
 		
 	return (
 
