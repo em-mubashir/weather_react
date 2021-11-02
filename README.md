@@ -1,5 +1,4 @@
 # Weather app in typescript using open weather map api
-### `7 Day forecast for the current location is not shown because it required to get subscription for this api (https://openweathermap.org/forecast16) `
 
 ## Available Scripts
 
