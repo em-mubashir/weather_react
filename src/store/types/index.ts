@@ -54,6 +54,3 @@ export interface WeatherState {
 }
 
 
-export interface AlertState {
-  message: string;
-}
